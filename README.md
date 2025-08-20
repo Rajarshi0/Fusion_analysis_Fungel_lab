@@ -286,16 +286,12 @@ fusion_analysis_output/
 
 ### **Convert STAR-Fusion to Cicero Format**
 ```bash
-conda activate fusion
-
 # Edit paths in the script
 python scripts/starfusion2cicero.py
 ```
 
 ### **Convert Arriba to Cicero Format**
 ```bash
-conda activate fusion
-
 # Edit paths in the script  
 python scripts/automated_convert_arriba2cicero.py
 ```
