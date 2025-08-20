@@ -97,7 +97,13 @@ Download and configure the following reference datasets:
   tar -xvzf GRCh38_gencode_v44_CTAT_lib_Oct292023.plug-n-play.tar.gz
   ```
 - **STAR Index**: Pre-built genome index
+   ```
+  ## refer STAR github. 
+  ```
 - **FusionCatcher Database**: Species-specific fusion database
+  ```
+  ## refer fusioincatcher github for buiding the database
+  ```
 - **Arriba Files**: Blacklist and reference genome
   
    ```
