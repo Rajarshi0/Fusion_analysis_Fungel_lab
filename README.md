@@ -91,10 +91,37 @@ conda env create -f env/fusioncatcher_environment.yml
 ### 3. **Prepare Reference Data**
 Download and configure the following reference datasets:
 - **CTAT Genome Library**: For STAR-Fusion
+  ```
+  ## Site link: https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/
+  wget -c https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/GRCh38_gencode_v44_CTAT_lib_Oct292023.plug-n-play.tar.gz
+  tar -xvzf GRCh38_gencode_v44_CTAT_lib_Oct292023.plug-n-play.tar.gz
+  ```
 - **STAR Index**: Pre-built genome index
 - **FusionCatcher Database**: Species-specific fusion database
 - **Arriba Files**: Blacklist and reference genome
+  
+   ```
+  ## Arriba release site: https://github.com/suhrig/arriba/releases
+  #v2.5.0 contains blacklisted, you can use it if it supports. 
+  #I have used the #v1.2.0
+  
+  wget -c https://github.com/suhrig/arriba/releases/download/v1.2.0/arriba_v1.2.0.tar.gz
+
+  wget -c https://github.com/suhrig/arriba/releases/download/v2.5.0/arriba_v2.5.0.tar.gz
+   ```
+  
 - **Cicero References**: Genome FASTA and RefFlat files
+
+  ```
+  ## Site link: https://www.gencodegenes.org/human/
+  wget -c https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_48/GRCh38.primary_assembly.genome.fa.gz
+  tar -xvzf GRCh38_gencode_v44_CTAT_lib_Oct292023.plug-n-play.tar.gz
+
+
+  ```
+  
+
+
 
 ### 4. **Configure Script Paths**
 Edit the configuration sections in the main analysis scripts to point to your reference data locations.
