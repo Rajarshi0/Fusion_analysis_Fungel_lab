@@ -173,12 +173,6 @@ Aligned BAMs → RNApeg processing → Cicero analysis → Results
   --threads 16
 ```
 
-**FusionCatcher:**
-```bash
-conda activate fusioncatcher
-./scripts/fusioncatcher_parallel_2.sh sample_R1.fastq.gz sample_R2.fastq.gz
-```
-
 ### **Option B: Batch Processing Mode**
 
 **STAR-Fusion + Arriba Batch:**
