@@ -7,7 +7,7 @@ Welcome! This repository contains a complete suite of scripts for performing hig
 ## 📌 Table of Contents
 - [Features](#-features)
 - [System Requirements](#-system-requirements)
-- [Setup and Installation](#-setup-and-installation)
+- [Setup & Installation](#-setup--installation)
 - [A Beginner's Guide to Parallel Execution & Resources](#-a-beginners-guide-to-parallel-execution--resources)
 - [Analysis Workflows](#-analysis-workflows)
 - [How to Run an Analysis](#-how-to-run-an-analysis)
@@ -68,7 +68,7 @@ Welcome! This repository contains a complete suite of scripts for performing hig
 
 ---
 
-## ⚙️ Setup and Installation
+## ⚙️ Setup & Installation
 
 Majorly **setup.sh** should handle the complete setup and download of libraries and database.
 
