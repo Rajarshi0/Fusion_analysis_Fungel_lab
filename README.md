@@ -129,11 +129,6 @@ Download and configure the following reference datasets:
   ```
   
 
-
-
-### 4. **Configure Script Paths**
-Edit the configuration sections in the main analysis scripts to point to your reference data locations.
-
 ---
 
 ## 🧠 A Beginner's Guide to Parallel Execution & Resources
