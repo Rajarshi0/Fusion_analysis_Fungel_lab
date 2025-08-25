@@ -100,11 +100,13 @@ Download and configure the following reference datasets:
   ```
 - **STAR Index**: Pre-built genome index
    ```
-  ## refer STAR github. 
+  ## refer STAR github: 
+  https://github.com/alexdobin/STAR/
   ```
 - **FusionCatcher Database**: Species-specific fusion database
   ```
-  ## refer fusioincatcher github for buiding the database
+  ## refer fusioincatcher github for buiding the database:
+  https://github.com/ndaniel/fusioncatcher
   ```
 - **Arriba Files**: Blacklist and reference genome
   
