@@ -205,36 +205,36 @@ create_conda_environments() {
 # SINGULARITY/DOCKER SETUP
 # =============================================================================
 
-setup_containers() {
-    print_header "CONTAINER SETUP"
+#setup_containers() {
+ #   print_header "CONTAINER SETUP"
     
     # Check if Singularity is available
-    if check_command "singularity"; then
-        log "Singularity found: $(singularity --version)"
+  #  if check_command "singularity"; then
+   #     log "Singularity found: $(singularity --version)"
         
-        log "Pulling Cicero container..."
-        singularity pull "$REFERENCE_DIR/cicero.sif" docker://ghcr.io/stjude/cicero:latest || {
-            log_warning "Failed to pull Cicero container. Will try to pull at runtime."
-        }
+    #    log "Pulling Cicero container..."
+     #   singularity pull "$REFERENCE_DIR/cicero.sif" docker://ghcr.io/stjude/cicero:latest || {
+      #      log_warning "Failed to pull Cicero container. Will try to pull at runtime."
+       # }
         
-        log "Pulling RNApeg container..."
-        singularity pull "$REFERENCE_DIR/rnapeg.sif" docker://ghcr.io/stjude/rnapeg:latest || {
-            log_warning "Failed to pull RNApeg container. Will try to pull at runtime."
-        }
+        #log "Pulling RNApeg container..."
+        #singularity pull "$REFERENCE_DIR/rnapeg.sif" docker://ghcr.io/stjude/rnapeg:latest || {
+         #   log_warning "Failed to pull RNApeg container. Will try to pull at runtime."
+        #}
         
-    elif check_command "docker"; then
-        log "Docker found: $(docker --version)"
-        log "Pulling required containers..."
+   # elif check_command "docker"; then
+    #    log "Docker found: $(docker --version)"
+    #    log "Pulling required containers..."
         
-        docker pull ghcr.io/stjude/cicero:latest || log_warning "Failed to pull Cicero container"
-        docker pull ghcr.io/stjude/rnapeg:latest || log_warning "Failed to pull RNApeg container"
+   #     docker pull ghcr.io/stjude/cicero:latest || log_warning "Failed to pull Cicero container"
+    #    docker pull ghcr.io/stjude/rnapeg:latest || log_warning "Failed to pull RNApeg container"
         
-    else
-        log_warning "Neither Singularity nor Docker found. Container-based workflows will not work."
-        log_info "To install Singularity: https://sylabs.io/guides/3.0/user-guide/installation.html"
-        log_info "To install Docker: https://docs.docker.com/engine/install/"
-    fi
-}
+   # else
+    #    log_warning "Neither Singularity nor Docker found. Container-based workflows will not work."
+    #    log_info "To install Singularity: https://sylabs.io/guides/3.0/user-guide/installation.html"
+    #    log_info "To install Docker: https://docs.docker.com/engine/install/"
+   # fi
+#}
 
 # =============================================================================
 # REFERENCE DATA DOWNLOAD
@@ -390,7 +390,7 @@ configure_scripts() {
     local scripts_to_configure=(
         "scripts/fusioncatcher_parallel_2.sh"
         "scripts/run_parallel_FC.sh"
-        "scripts/run_cicero_parallel_docker.sh"
+        #"scripts/run_cicero_parallel_docker.sh"
     )
     
     for script in "${scripts_to_configure[@]}"; do
@@ -412,7 +412,7 @@ export STAR_INDEX_DIR="$REFERENCE_DIR/star_index"
 export ARRIBA_PATH="$REFERENCE_DIR/arriba/arriba"
 export ARRIBA_BLACKLIST="$REFERENCE_DIR/arriba/database/blacklist_hg38_GRCh38_2018-11-04.tsv.gz"
 export FUSIONCATCHER_DB="$REFERENCE_DIR/fusioncatcher_data"
-export CICERO_REF_DIR="$REFERENCE_DIR/cicero"
+# export CICERO_REF_DIR="$REFERENCE_DIR/cicero"
 
 # Activate conda base environment
 export PATH="$HOME/miniconda3/bin:\$PATH"
