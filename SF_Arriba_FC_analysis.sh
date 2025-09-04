@@ -321,7 +321,7 @@ if [[ -n "$REF_BUNDLE_DIR" ]]; then
     STAR_INDEX_DIR=${STAR_INDEX_DIR:-$(find "$REF_BUNDLE_DIR" -maxdepth 2 -name "star_index" -type d | head -n 1)}
     ARRIBA_PATH=${ARRIBA_PATH:-$(find "$REF_BUNDLE_DIR" -name "arriba" -type f -executable | head -n 1)}
     ARRIBA_BLACKLIST=${ARRIBA_BLACKLIST:-$(find "$REF_BUNDLE_DIR" -name "blacklist*.tsv.gz" -type f | head -n 1)}
-    FUSIONCATCHER_DB=${FUSIONCATCHER_DB:-$(find -L /Fungel/rajarshi/test/ref_fu -type d -path '*/fusioncatcher/data
+    FUSIONCATCHER_DB=${FUSIONCATCHER_DB:-$(find -L "$REF_BUNDLE_DIR" -type d -path '*/fusioncatcher/data
 /current')}
 fi
 
