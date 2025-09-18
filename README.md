@@ -36,7 +36,6 @@ This is created using the help of AI like **Gemini and Claude**
 
 ### **Reproducible Environments**
 - Pre-configured Conda environments with explicit package lists
-- Docker/Singularity integration for containerized workflows
 - Comprehensive dependency management
 
 ### **Automated Post-Processing**
@@ -71,7 +70,7 @@ This is created using the help of AI like **Gemini and Claude**
 
 ## ⚙️ Setup & Installation
 
-Majorly, **setup.sh** should handle the complete setup and download of libraries and the database.
+Majorly, **setup.sh** should handle the complete setup and download of libraries and the database. (but i recommend doing it step by step as this is in a development stage)
 
 ### 1. **Clone the Repository**
 ```bash
