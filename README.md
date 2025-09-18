@@ -2,6 +2,8 @@
 
 Welcome! This repository contains a complete suite of scripts for performing high-throughput gene fusion analysis on RNA-seq data. It includes parallel execution wrappers for multiple fusion callers (**STAR-Fusion**, **Arriba**, and **FusionCatcher**), Conda environment files for reproducible setup, and Python scripts for post-processing results into a standardized format.
 
+This is created using the help of AI like Gemini and Claude...
+
 ---
 
 ## 📌 Table of Contents
@@ -38,7 +40,7 @@ Welcome! This repository contains a complete suite of scripts for performing hig
 - Comprehensive dependency management
 
 ### **Automated Post-Processing**
-- Python scripts for converting outputs to standardized Cicero format
+- Python scripts for converting outputs to the standardized Cicero format
 - Batch processing capabilities with automatic file discovery
 - Quality control and error handling
 
@@ -51,7 +53,6 @@ Welcome! This repository contains a complete suite of scripts for performing hig
 
 ### **Software Dependencies**
 - [Conda/Miniconda](https://docs.conda.io/en/latest/miniconda.html) for environment management
-- [Docker](https://www.docker.com/) (for RNApeg container)
 
 
 ### **Hardware Recommendations**
@@ -163,12 +164,17 @@ Set `MIN_FREE_MEMORY_GB` to 10-20% of your total RAM as a safety buffer. The scr
 
 ## 🔬 Analysis Workflows
 
-### **Workflow 1: STAR-Fusion & Arriba (Recommended)**
+### **Workflow 1: STAR-Fusion**
 ```
-Raw FASTQs → fastp trimming → STAR alignment → STAR-Fusion + Arriba → Results
+Raw FASTQs → fastp trimming → STAR alignment → STAR-Fusion → Results
 ```
 
-### **Workflow 2: FusionCatcher**
+### **Workflow 2: Arriba**
+```
+Raw FASTQs → fastp trimming → STAR alignment → Arriba → Results
+```
+
+### **Workflow 3: FusionCatcher**
 ```
 Raw FASTQs → fastp trimming → FusionCatcher → Results
 ```
