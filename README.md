@@ -2,7 +2,7 @@
 
 Welcome! This repository contains a complete suite of scripts for performing high-throughput gene fusion analysis on RNA-seq data. It includes parallel execution wrappers for multiple fusion callers (**STAR-Fusion**, **Arriba**, and **FusionCatcher**), Conda environment files for reproducible setup, and Python scripts for post-processing results into a standardized format.
 
-This is created using the help of AI like Gemini and Claude...
+This is created using the help of AI like **Gemini and Claude** 
 
 ---
 
