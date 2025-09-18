@@ -70,7 +70,7 @@ Welcome! This repository contains a complete suite of scripts for performing hig
 
 ## ⚙️ Setup & Installation
 
-Majorly **setup.sh** should handle the complete setup and download of libraries and database.
+Majorly, **setup.sh** should handle the complete setup and download of libraries and the database.
 
 ### 1. **Clone the Repository**
 ```bash
@@ -120,17 +120,6 @@ Download and configure the following reference datasets:
   wget -c https://github.com/suhrig/arriba/releases/download/v2.5.0/arriba_v2.5.0.tar.gz
    ```
   
-- **Cicero References**: Genome FASTA and RefFlat files
-
-  ```
-  ## Site link: https://www.gencodegenes.org/human/
-  wget -c https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_48/GRCh38.primary_assembly.genome.fa.gz
-  tar -xvzf GRCh38_gencode_v44_CTAT_lib_Oct292023.plug-n-play.tar.gz
-
-
-  ```
-  
-
 ---
 
 ## 🧠 A Beginner's Guide to Parallel Execution & Resources
@@ -197,7 +186,7 @@ Aligned BAMs → RNApeg processing → Cicero analysis → Results
 
 **STAR-Fusion + Arriba:**
 ```bash
-./final_SF_arriba_analysis.sh \
+bash final_SF_arriba_analysis.sh \
   --r1 sample_R1.fastq.gz \
   --r2 sample_R2.fastq.gz \
   --sample MySample \
@@ -209,9 +198,9 @@ Aligned BAMs → RNApeg processing → Cicero analysis → Results
 
 **STAR-Fusion + Arriba Batch:**
 ```bash
-./final_SF_arriba_analysis.sh \
-  --input-dir /path/to/fastq/directory \
-  --ref-bundle-dir /path/to/references \
+bash final_SF_arriba_analysis.sh \
+  -I /path/to/fastq/directory \
+  -R /path/to/references \
   --threads 16 \
   --max-jobs 4
 ```
@@ -257,10 +246,19 @@ Aligned BAMs → RNApeg processing → Cicero analysis → Results
 
 **Run only STAR-Fusion on a batch:**
 ```bash
-./final_SF_arriba_analysis.sh \
+bash final_SF_arriba_analysis.sh \
   --input-dir fastq_files/ \
   --ref-bundle-dir /data/references/ \
   --run-tools starfusion \
+  --max-jobs 6
+```
+
+**Run only multi-tools on a batch:**
+```bash
+bash final_SF_arriba_analysis.sh \
+  --input-dir fastq_files/ \
+  --ref-bundle-dir /data/references/ \
+  --run-tools starfusion,arriba \
   --max-jobs 6
 ```
 
