@@ -24,7 +24,7 @@ Welcome! This repository contains a complete suite of scripts for performing hig
 ### **Multiple Fusion Calling Pipelines**
 - **STAR-Fusion + Arriba**: Combined pipeline with optimized STAR alignment parameters
 - **FusionCatcher**: Independent pipeline with Python 2.7 environment
-- **Cicero + RNApeg**: Containerized workflow using Docker/Singularity
+
 
 ### **Advanced Execution Management** 
 - **Modular Checkpointing**: Resume analysis from any failed step without losing progress
@@ -52,7 +52,7 @@ Welcome! This repository contains a complete suite of scripts for performing hig
 ### **Software Dependencies**
 - [Conda/Miniconda](https://docs.conda.io/en/latest/miniconda.html) for environment management
 - [Docker](https://www.docker.com/) (for RNApeg container)
-- [Singularity/Apptainer](https://apptainer.org/) (for Cicero container)
+
 
 ### **Hardware Recommendations**
 - **CPU**: Multi-core processor (16+ cores recommended)
@@ -64,7 +64,7 @@ Welcome! This repository contains a complete suite of scripts for performing hig
 - CTAT Genome Library
 - FusionCatcher database
 - Arriba blacklist and reference files
-- Cicero reference genome and annotation files
+
 
 ---
 
@@ -173,10 +173,6 @@ Raw FASTQs → fastp trimming → STAR alignment → STAR-Fusion + Arriba → Re
 Raw FASTQs → fastp trimming → FusionCatcher → Results
 ```
 
-### **Workflow 3: Cicero & RNApeg**
-```
-Aligned BAMs → RNApeg processing → Cicero analysis → Results
-```
 
 ---
 
@@ -265,12 +261,12 @@ bash final_SF_arriba_analysis.sh \
 **Resume failed analysis:**
 ```bash
 # The script automatically detects completed steps and resumes from failures
-./final_SF_arriba_analysis.sh --input-dir fastq_files/ --ref-bundle-dir /data/references/
+bash final_SF_arriba_analysis.sh --input-dir fastq_files/ --ref-bundle-dir /data/references/
 ```
 
 **Force complete reanalysis:**
 ```bash
-./final_SF_arriba_analysis.sh \
+bash final_SF_arriba_analysis.sh \
   --input-dir fastq_files/ \
   --ref-bundle-dir /data/references/ \
   --force
@@ -391,6 +387,8 @@ OUTPUT_DIRECTORY = "cicero_converted_outputs"
 # Recreate environments if corrupted
 conda env remove -n fusion
 conda env create -f env/fusion_environment.yml
+
+# If facing issues with the YML files, use the other env files:
 ```
 
 **Incomplete Analysis:**
