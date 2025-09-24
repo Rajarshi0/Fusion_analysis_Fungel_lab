@@ -1,4 +1,4 @@
-echo "--- [${SAMPLE_NAME}] Starting analysis for tools: ${TOOLS_TO_RUN} ---"#!/bin/bash
+#!/bin/bash
 set -euo pipefail
 
 # ===================================================================================
@@ -72,6 +72,21 @@ usage() {
     exit 1
 }
 
+
+# --- Global helper function (available everywhere) ---
+should_run_tool() {
+    local tool="$1"
+    if [[ "$RUN_TOOLS" == "all" ]]; then
+        return 0
+    elif [[ "$RUN_TOOLS" == *"$tool"* ]]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+
+
 # --- Worker Function (The actual analysis for one sample) ---
 run_single_sample() {
     local SAMPLE_NAME="$1"; local R1_FILE="$2"; local R2_FILE="$3"; local OUTPUT_BASE_DIR="$4"
@@ -80,19 +95,20 @@ run_single_sample() {
     set -euo pipefail
 
     # Helper function to check if a tool should run
-    should_run_tool() {
-        local tool="$1"
-        local tools_to_run="$2"
+    #should_run_tool() {
+     #   local tool="$1"
+      #  local tools_to_run="$2"
         
-        if [[ "$tools_to_run" == "all" ]]; then
-            return 0
-        elif [[ "$tools_to_run" == *"$tool"* ]]; then
-            return 0
-        else
-            return 1
-        fi
-    }
+       # if [[ "$tools_to_run" == "all" ]]; then
+        #    return 0
+        #elif [[ "$tools_to_run" == *"$tool"* ]]; then
+        #    return 0
+        #else
+        #    return 1
+        #fi
+    #}
     
+
     # --- Define all output and status paths ---
     local GENOME_FASTA="${CTAT_LIB_DIR}/ref_genome.fa"; local ANNOTATION_GTF="${CTAT_LIB_DIR}/ref_annot.gtf"
     local STATUS_DIR="${OUTPUT_BASE_DIR}/status/${SAMPLE_NAME}"
@@ -321,8 +337,7 @@ if [[ -n "$REF_BUNDLE_DIR" ]]; then
     STAR_INDEX_DIR=${STAR_INDEX_DIR:-$(find "$REF_BUNDLE_DIR" -maxdepth 2 -name "star_index" -type d | head -n 1)}
     ARRIBA_PATH=${ARRIBA_PATH:-$(find "$REF_BUNDLE_DIR" -name "arriba" -type f -executable | head -n 1)}
     ARRIBA_BLACKLIST=${ARRIBA_BLACKLIST:-$(find "$REF_BUNDLE_DIR" -name "blacklist*.tsv.gz" -type f | head -n 1)}
-    FUSIONCATCHER_DB=${FUSIONCATCHER_DB:-$(find -L "$REF_BUNDLE_DIR" -type d -path '*/fusioncatcher/data
-/current')}
+    FUSIONCATCHER_DB=${FUSIONCATCHER_DB:-$(find -L "$REF_BUNDLE_DIR" -type d \( -path "*/fusioncatcher/data/current" -o -path "*/fusioncatcher/data/current" \) | head -n 1)}
 fi
 
 # Updated validation to handle tool-specific requirements
@@ -371,9 +386,31 @@ validate_tools_and_paths "$RUN_TOOLS"
 
 if [[ -n "$INPUT_DIR" ]]; then # BATCH MODE
     echo "🔄 Batch Mode Detected. Tools to run: ${RUN_TOOLS}"
-    for r1 in "$INPUT_DIR"/*_R1*.fastq.gz; do
-        sample=$(basename "$r1" | sed -e 's/_R1.*.fastq.gz//' -e 's/_R1.*.fq.gz//')
-        
+
+    shopt -s nullglob  # avoid literal glob if no matches
+    for r1 in "$INPUT_DIR"/*_R1*.{fastq,fq}{,.gz}; do
+        [ -e "$r1" ] || continue  # skip if no matches
+
+        # Derive sample name (strip R1... + extension)
+        sample=$(basename "$r1" | sed -E 's/_R1[^.]*\.(fastq|fq)(\.gz)?$//')
+
+        # Find matching R2 by replacing _R1 with _R2
+        r2="${r1/_R1/_R2}"
+
+        # Safety check: skip if no matching R2
+        if [[ ! -f "$r2" ]]; then
+            echo "⚠️  Skipping $sample: no matching R2 found for $r1"
+            continue
+        fi
+	
+        r1=$(echo "$r1" | sed 's://*:/:g')
+        r2=$(echo "$r2" | sed 's://*:/:g')
+
+
+        echo "✅ Found sample: $sample"
+        echo "   R1: $r1"
+        echo "   R2: $r2"
+
         # Quick check for final completion markers to skip fully completed samples early
         sample_complete=false
         status_dir="${OUTPUT_BASE_DIR}/status/${sample}"
